@@ -11,8 +11,9 @@ export default function Layout({ member, menu, current, go, children }) {
     <div className="min-h-screen md:flex">
       <aside className={`${open ? 'block' : 'hidden'} md:block md:w-64 shrink-0 bg-gradient-to-b from-[#16171B] to-ink text-white md:min-h-screen md:sticky md:top-0 md:h-screen`}>
         <div className="p-6 hidden md:block">
-          <p className="font-display text-xl font-semibold tracking-tight"><span className="txt-silver">Grupo</span> <span className="txt-blue">Le Belle</span></p>
-          <div className="mt-3 h-px bg-gradient-to-r from-silver/60 via-silver/20 to-transparent" />
+          <img src="/logo-lebelle-branca.png" alt="Le Belle Cosmetics" className="w-36 mx-auto drop-shadow-[0_2px_12px_rgba(0,122,255,0.25)]" />
+          <p className="mt-4 text-center text-[11px] font-semibold uppercase tracking-[0.28em]"><span className="txt-silver">Grupo</span> <span className="text-blue">Le Belle</span></p>
+          <div className="mt-4 h-px bg-gradient-to-r from-transparent via-silver/40 to-transparent" />
         </div>
         <nav className="px-3 pb-4 md:pb-0 space-y-1">
           {menu.map(([k, l]) => (
@@ -30,7 +31,7 @@ export default function Layout({ member, menu, current, go, children }) {
       </aside>
       <div className="flex-1 min-w-0">
         <header className="md:hidden flex items-center justify-between p-4 bg-ink text-white">
-          <p className="font-display font-semibold tracking-tight"><span className="txt-silver">Grupo</span> <span className="txt-blue">Le Belle</span></p>
+          <div className="flex items-center gap-3"><img src="/logo-lebelle-branca.png" alt="Le Belle Cosmetics" className="h-10 w-auto" /><p className="text-[11px] font-semibold uppercase tracking-[0.2em]"><span className="txt-silver">Grupo</span> <span className="text-blue">Le Belle</span></p></div>
           <button onClick={() => setOpen(!open)} className="rounded-lg border border-white/20 px-3 py-1 text-sm">Menu</button>
         </header>
         <main className="p-4 md:p-8 max-w-7xl">{children}</main>

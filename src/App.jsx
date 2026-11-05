@@ -186,6 +186,7 @@ function NovaSenha({ onDone }) {
 export function Brand({ small }) {
   return (
     <div className={small ? '' : 'text-center'}>
+      {!small && <img src="/logo-lebelle.png" alt="Le Belle Cosmetics" className="w-40 mx-auto mb-5" />}
       <p className={`font-display font-bold tracking-tight ${small ? 'text-lg' : 'text-3xl'}`}>
         <span className="bg-gradient-to-b from-silver-dark to-ink bg-clip-text text-transparent">Grupo</span> <span className="bg-gradient-to-b from-[#3D9BFF] to-blue-dark bg-clip-text text-transparent">Le Belle</span>
       </p>
