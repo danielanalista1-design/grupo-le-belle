@@ -41,7 +41,7 @@ export default function Login() {
           <div><label className="label">Senha</label><SenhaInput required minLength={6} value={senha} onChange={(e) => setSenha(e.target.value)} autoComplete={mode === 'entrar' ? 'current-password' : 'new-password'} /></div>
         )}
         {msg.t && <p className={`text-sm ${msg.ok ? 'text-leaf' : 'text-red-700'}`}>{msg.t}</p>}
-        <button className="btn-gold w-full" disabled={busy}>
+        <button className="btn-primary w-full" disabled={busy}>
           {busy ? 'Aguarde…' : mode === 'entrar' ? 'Entrar' : mode === 'criar' ? 'Criar conta' : 'Enviar link'}
         </button>
         <button type="button" className="w-full text-sm text-ink/60 hover:text-ink" onClick={() => setMode(mode === 'esqueci' ? 'entrar' : 'esqueci')}>

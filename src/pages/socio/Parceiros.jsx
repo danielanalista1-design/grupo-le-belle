@@ -30,7 +30,7 @@ export default function Parceiros() {
     <div className="space-y-5">
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div><h1 className="h1">Parceiros e acessos</h1><p className="text-ink/60 text-sm">Aprove cadastros, defina a categoria e convide pessoas.</p></div>
-        <button className="btn-gold" onClick={() => setNovoConvite(true)}>Convidar por e-mail</button>
+        <button className="btn-primary" onClick={() => setNovoConvite(true)}>Convidar por e-mail</button>
       </div>
       <div className="flex flex-wrap gap-2">
         {[['pendente', `Aguardando (${pend})`], ['aprovado', 'Aprovados'], ['bloqueado', 'Bloqueados'], ['todos', 'Todos']].map(([k, l]) => (
@@ -49,7 +49,7 @@ export default function Parceiros() {
                 <td>{m.role === 'parceiro' ? (m.categoria === 'distribuidor' ? 'Distribuidor' : 'Revendedor') : PAPEL[m.role]}{m.role === 'socio' && <div className="text-xs text-ink/50">{pct(m.participacao_pct)}</div>}</td>
                 <td><span className={`pill ${ST[m.status]}`}>{m.status}</span></td>
                 <td className="text-xs">{date(m.created_at)}</td>
-                <td><button className="text-xs font-semibold text-gold-dark hover:underline" onClick={() => setEdit(m)}>{m.status === 'pendente' ? 'Analisar' : 'Editar'}</button></td>
+                <td><button className="text-xs font-semibold text-blue hover:underline" onClick={() => setEdit(m)}>{m.status === 'pendente' ? 'Analisar' : 'Editar'}</button></td>
               </tr>
             ))}</tbody>
           </table>
@@ -107,7 +107,7 @@ function MembroForm({ m, onClose, onSaved }) {
       <div className="flex flex-wrap justify-end gap-2">
         {m.status !== 'bloqueado' && m.role !== 'socio' && <button className="btn-danger" onClick={() => salvar('bloqueado')}>Bloquear</button>}
         <button className="btn-ghost" onClick={() => salvar()}>Salvar</button>
-        {m.status !== 'aprovado' && <button className="btn-gold" onClick={() => salvar('aprovado')}>Aprovar acesso</button>}
+        {m.status !== 'aprovado' && <button className="btn-primary" onClick={() => salvar('aprovado')}>Aprovar acesso</button>}
       </div>
     </Modal>
   )
@@ -133,7 +133,7 @@ function ConviteForm({ onClose, onSaved }) {
           </select></div>
         <p className="text-xs text-ink/50">Para convidar creators, use a tela Creators (o convite fica ligado ao cupom).</p>
         {err && <p className="text-sm text-red-700">{err}</p>}
-        <div className="flex justify-end gap-2"><button type="button" className="btn-ghost" onClick={onClose}>Cancelar</button><button className="btn-gold">Enviar convite</button></div>
+        <div className="flex justify-end gap-2"><button type="button" className="btn-ghost" onClick={onClose}>Cancelar</button><button className="btn-primary">Enviar convite</button></div>
       </form>
     </Modal>
   )

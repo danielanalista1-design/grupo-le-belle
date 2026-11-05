@@ -29,7 +29,7 @@ export default function Configuracoes() {
         </label>
         <div className="sm:w-1/2"><label className="label">Comissão padrão de creators (%)</label><input type="number" step="0.01" className="input" value={s.creator_comissao_padrao} onChange={(e) => setS({ ...s, creator_comissao_padrao: e.target.value })} /></div>
         {msg && <p className="text-sm text-leaf">{msg}</p>}
-        <button className="btn-gold">Salvar</button>
+        <button className="btn-primary">Salvar</button>
       </div>
       <div className="card p-6 text-sm text-ink/70 space-y-1">
         <p><b>Como a divisão é calculada:</b> valor dos produtos das vendas pagas (sem frete, com descontos), menos as comissões de creators. O resultado é dividido pela participação de cada sócio, cadastrada em Parceiros e acessos.</p>

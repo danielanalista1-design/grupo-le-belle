@@ -146,7 +146,7 @@ function Aguardando({ member, email, onReload }) {
               <p className="text-xs text-ink/50 mt-1">A categoria final é definida pelos sócios na aprovação.</p>
             </div>
             {msg && <p className="text-sm text-red-700">{msg}</p>}
-            <button className="btn-gold w-full" disabled={busy}>{busy ? 'Enviando…' : 'Solicitar acesso'}</button>
+            <button className="btn-primary w-full" disabled={busy}>{busy ? 'Enviando…' : 'Solicitar acesso'}</button>
           </form>
         )}
         <button className="btn-ghost w-full" onClick={() => supabase.auth.signOut()}>Sair</button>
@@ -177,7 +177,7 @@ function NovaSenha({ onDone }) {
         <div><label className="label">Nova senha</label><SenhaInput value={s1} onChange={(e) => setS1(e.target.value)} autoComplete="new-password" /></div>
         <div><label className="label">Repita a nova senha</label><SenhaInput value={s2} onChange={(e) => setS2(e.target.value)} autoComplete="new-password" /></div>
         {msg && <p className="text-sm text-red-700">{msg}</p>}
-        <button className="btn-gold w-full" disabled={busy}>{busy ? 'Salvando…' : 'Salvar nova senha'}</button>
+        <button className="btn-primary w-full" disabled={busy}>{busy ? 'Salvando…' : 'Salvar nova senha'}</button>
       </form>
     </div>
   )
@@ -187,7 +187,7 @@ export function Brand({ small }) {
   return (
     <div className={small ? '' : 'text-center'}>
       <p className={`font-display font-bold tracking-tight ${small ? 'text-lg' : 'text-3xl'}`}>
-        <span className="bg-gradient-to-b from-silver-dark to-ink bg-clip-text text-transparent">Grupo</span> <span className="bg-gradient-to-b from-gold to-gold-dark bg-clip-text text-transparent">Le Belle</span>
+        <span className="bg-gradient-to-b from-silver-dark to-ink bg-clip-text text-transparent">Grupo</span> <span className="bg-gradient-to-b from-[#3D9BFF] to-blue-dark bg-clip-text text-transparent">Le Belle</span>
       </p>
       {!small && <p className="text-xs uppercase tracking-[0.3em] text-silver-dark mt-1">Gestão de vendas e parceiros</p>}
     </div>

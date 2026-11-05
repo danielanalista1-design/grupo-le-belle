@@ -45,7 +45,7 @@ export default function PedidosSocio() {
                 <td className="text-right font-semibold">{money(r.valor_produtos)}</td>
                 <td className="text-xs">{FORMA[r.forma]}</td>
                 <td><span className={`pill ${STATUS_COR[r.status]}`}>{STATUS_PEDIDO[r.status]}</span></td>
-                <td><button className="text-xs font-semibold text-gold-dark hover:underline" onClick={() => setSel(r)}>Abrir</button></td>
+                <td><button className="text-xs font-semibold text-blue hover:underline" onClick={() => setSel(r)}>Abrir</button></td>
               </tr>
             ))}</tbody>
           </table>
@@ -100,8 +100,8 @@ function PedidoDetalhe({ p, onClose, onSaved }) {
         <div className="flex flex-wrap gap-2">
           {p.status !== 'cancelado' && <button className="btn-danger" disabled={busy} onClick={() => confirm('Cancelar este pedido?') && mudar('cancelado')}>Cancelar</button>}
           {p.status === 'aguardando' && <button className="btn-dark" disabled={busy} onClick={() => mudar('aprovado')}>Aprovar</button>}
-          {['aguardando', 'aprovado'].includes(p.status) && <button className="btn-gold" disabled={busy} onClick={() => mudar('pago')}>Confirmar pagamento</button>}
-          {p.status === 'pago' && <button className="btn-gold" disabled={busy} onClick={() => mudar('enviado')}>Marcar como enviado</button>}
+          {['aguardando', 'aprovado'].includes(p.status) && <button className="btn-primary" disabled={busy} onClick={() => mudar('pago')}>Confirmar pagamento</button>}
+          {p.status === 'pago' && <button className="btn-primary" disabled={busy} onClick={() => mudar('enviado')}>Marcar como enviado</button>}
           <button className="btn-ghost" disabled={busy} onClick={() => mudar(p.status)}>Salvar</button>
         </div>
       </div>

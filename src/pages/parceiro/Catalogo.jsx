@@ -58,7 +58,7 @@ export default function Catalogo({ member, onDone }) {
                 <div key={p.id} className="flex items-center gap-3 px-4 py-3">
                   {p.imagem_url ? <img src={p.imagem_url} alt="" className="w-12 h-12 rounded-lg object-cover bg-sand" /> : <div className="w-12 h-12 rounded-lg bg-sand" />}
                   <div className="flex-1 min-w-0">
-                    <p className="font-medium text-sm">{p.nome} {p.tipo === 'kit' && <span className="pill bg-gold-light/40 text-gold-dark ml-1">Kit</span>}</p>
+                    <p className="font-medium text-sm">{p.nome} {p.tipo === 'kit' && <span className="pill bg-blue-light text-blue-dark ml-1">Kit</span>}</p>
                     <p className="text-sm"><b>{money(p.preco)}</b>{p.preco_varejo && <span className="text-xs text-ink/50"> · varejo sugerido {money(p.preco_varejo)}</span>}</p>
                   </div>
                   <div className="flex items-center gap-1">
@@ -92,7 +92,7 @@ export default function Catalogo({ member, onDone }) {
         </div>
         <div><label className="label">Observação</label><textarea className="input" rows={2} value={obs} onChange={(e) => setObs(e.target.value)} placeholder="Endereço de entrega, prazo, etc." /></div>
         {err && <p className="text-sm text-red-700">{err}</p>}
-        <button className="btn-gold w-full" disabled={busy || unidades < cfg.minimo_revendedor} onClick={enviar}>{busy ? 'Enviando…' : 'Enviar pedido'}</button>
+        <button className="btn-primary w-full" disabled={busy || unidades < cfg.minimo_revendedor} onClick={enviar}>{busy ? 'Enviando…' : 'Enviar pedido'}</button>
       </aside>
     </div>
   )

@@ -55,7 +55,7 @@ export default function Creators() {
         <div><h1 className="h1">Creators</h1><p className="text-ink/60 text-sm">Cadastro, cupons e fechamento mensal das comissões.</p></div>
         <div className="flex items-end gap-2">
           <div><label className="label">Mês</label><input type="month" className="input" value={mes} onChange={(e) => setMes(e.target.value)} /></div>
-          <button className="btn-gold" onClick={() => setEdit({})}>Novo creator</button>
+          <button className="btn-primary" onClick={() => setEdit({})}>Novo creator</button>
         </div>
       </div>
       <div className="flex gap-6 text-sm"><span>Vendido com cupons: <b>{money(total.valor)}</b></span><span>Comissões do mês: <b>{money(total.comissao)}</b></span></div>
@@ -81,7 +81,7 @@ export default function Creators() {
                       {p?.pago_em ? `Pago em ${date(p.pago_em)}` : 'Marcar pago'}
                     </button>
                   </td>
-                  <td><button className="text-xs font-semibold text-gold-dark hover:underline" onClick={() => setEdit({ ...c, email: convites[c.id] || '' })}>Editar</button></td>
+                  <td><button className="text-xs font-semibold text-blue hover:underline" onClick={() => setEdit({ ...c, email: convites[c.id] || '' })}>Editar</button></td>
                 </tr>
               )
             })}</tbody>
@@ -129,7 +129,7 @@ function CreatorForm({ c, onClose, onSaved }) {
         )}
         <label className="flex items-center gap-2 text-sm"><input type="checkbox" checked={v.ativo} onChange={set('ativo')} /> Ativo</label>
         {err && <p className="text-sm text-red-700">{err}</p>}
-        <div className="flex justify-end gap-2"><button type="button" className="btn-ghost" onClick={onClose}>Cancelar</button><button className="btn-gold" disabled={busy}>{busy ? 'Salvando…' : 'Salvar'}</button></div>
+        <div className="flex justify-end gap-2"><button type="button" className="btn-ghost" onClick={onClose}>Cancelar</button><button className="btn-primary" disabled={busy}>{busy ? 'Salvando…' : 'Salvar'}</button></div>
       </form>
     </Modal>
   )

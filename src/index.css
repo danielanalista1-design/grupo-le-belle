@@ -9,12 +9,11 @@
 @layer components {
   .card { @apply bg-white rounded-2xl border border-line shadow-[0_1px_2px_rgba(11,11,13,0.04),0_4px_16px_rgba(11,11,13,0.04)]; }
   .btn { @apply inline-flex items-center justify-center gap-2 rounded-full px-4 py-2.5 text-sm font-semibold transition disabled:opacity-50 disabled:cursor-not-allowed; }
-  .btn-gold { @apply btn bg-gradient-to-b from-gold-light to-gold text-ink hover:brightness-105 shadow-sm; }
-  .btn-blue { @apply btn bg-blue text-white hover:bg-blue-dark shadow-sm; }
+  .btn-primary { @apply btn bg-gradient-to-b from-[#2A8CFF] to-blue text-white hover:to-blue-dark shadow-[0_4px_14px_rgba(0,122,255,0.30)]; }
   .btn-dark { @apply btn bg-blue text-white hover:bg-blue-dark; }
   .btn-ghost { @apply btn border border-line bg-white hover:bg-sand; }
   .btn-danger { @apply btn border border-red-200 bg-white text-red-700 hover:bg-red-50; }
-  .input { @apply w-full rounded-xl border border-line bg-white px-3 py-2.5 text-sm outline-none focus:border-blue focus:ring-4 focus:ring-blue/15; }
+  .input { @apply w-full rounded-xl border border-line bg-white px-3 py-2.5 text-sm outline-none focus:border-blue focus:ring-4 focus:ring-blue/20; }
   .label { @apply block text-xs font-semibold uppercase tracking-wide text-silver-dark mb-1; }
   .h1 { @apply font-display text-2xl md:text-[32px] font-bold tracking-tight; }
   .h2 { @apply font-display text-lg font-semibold tracking-tight; }
@@ -23,5 +22,5 @@
   .table td { @apply px-3 py-2.5 border-b border-line/70 align-top; }
   .pill { @apply inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold; }
   .txt-silver { @apply bg-gradient-to-b from-white via-silver-light to-silver bg-clip-text text-transparent; }
-  .txt-gold { @apply bg-gradient-to-b from-gold-light to-gold bg-clip-text text-transparent; }
+  .txt-blue { @apply bg-gradient-to-b from-[#5AB0FF] to-blue bg-clip-text text-transparent; }
 }

@@ -58,7 +58,7 @@ export default function Dashboard() {
 
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         <Stat label="Vendas pagas" value={num(r.qtd)} hint={`${r.pendentes} pendentes · ${r.canceladas} canceladas`} />
-        <Stat label="Valor dos produtos" value={money(r.produtos)} hint="Sem frete, com descontos" tone="gold" />
+        <Stat label="Valor dos produtos" value={money(r.produtos)} hint="Sem frete, com descontos" tone="silver" />
         <Stat label="Comissões de creators" value={money(r.comissoes)} hint="15% sobre vendas com cupom" />
         <Stat label="Base para divisão" value={money(r.base)} hint="Produtos − comissões de creators" tone="leaf" />
       </div>
@@ -106,7 +106,7 @@ function Ranking({ titulo, linhas, labels, total }) {
             return (
               <div key={k}>
                 <div className="flex justify-between text-sm"><span className="font-medium">{labels[k] || k}</span><span>{money(v.valor)}</span></div>
-                <div className="h-2 rounded-full bg-sand mt-1 overflow-hidden"><div className="h-full bg-gradient-to-r from-blue to-[#4C7BFF]" style={{ width: `${p}%` }} /></div>
+                <div className="h-2 rounded-full bg-sand mt-1 overflow-hidden"><div className="h-full bg-gradient-to-r from-blue to-[#5AB0FF]" style={{ width: `${p}%` }} /></div>
                 <p className="text-xs text-ink/50 mt-0.5">{v.qtd} vendas · {pct(p)}</p>
               </div>
             )

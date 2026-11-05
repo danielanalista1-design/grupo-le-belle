@@ -21,7 +21,7 @@ export default function Produtos() {
     <div className="space-y-5">
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div><h1 className="h1">Produtos e preços</h1><p className="text-ink/60 text-sm">Tabela oficial de atacado 2026. Distribuidor = CAT. DISTRIBUIDOR · Revendedor = CAT. MICRO-DISTRIBUIDOR.</p></div>
-        <button className="btn-gold" onClick={() => setEdit({})}>Novo produto</button>
+        <button className="btn-primary" onClick={() => setEdit({})}>Novo produto</button>
       </div>
       {rows.length === 0 ? <Empty>Nenhum produto.</Empty> : Object.entries(linhas).map(([titulo, itens]) => (
         <div key={titulo} className="card overflow-x-auto">
@@ -31,12 +31,12 @@ export default function Produtos() {
             <tbody>{itens.map((p) => (
               <tr key={p.id} className={p.ativo ? '' : 'opacity-50'}>
                 <td className="font-medium">{p.nome}</td>
-                <td><span className={`pill ${p.tipo === 'kit' ? 'bg-gold-light/40 text-gold-dark' : 'bg-sand'}`}>{p.tipo === 'kit' ? 'Kit' : 'Unidade'}</span></td>
+                <td><span className={`pill ${p.tipo === 'kit' ? 'bg-blue-light text-blue-dark' : 'bg-sand'}`}>{p.tipo === 'kit' ? 'Kit' : 'Unidade'}</span></td>
                 <td className="text-right">{money(p.preco_distribuidor)}</td>
                 <td className="text-right">{money(p.preco_revendedor)}</td>
                 <td className="text-right">{p.preco_varejo ? money(p.preco_varejo) : '—'}</td>
                 <td>{p.ativo ? 'Sim' : 'Não'}</td>
-                <td><button className="text-xs font-semibold text-gold-dark hover:underline" onClick={() => setEdit(p)}>Editar</button></td>
+                <td><button className="text-xs font-semibold text-blue hover:underline" onClick={() => setEdit(p)}>Editar</button></td>
               </tr>
             ))}</tbody>
           </table>
@@ -77,7 +77,7 @@ function ProdutoForm({ p, onClose, onSaved }) {
         </div>
         <label className="flex items-center gap-2 text-sm"><input type="checkbox" checked={v.ativo} onChange={set('ativo')} /> Disponível no portal</label>
         {err && <p className="text-sm text-red-700">{err}</p>}
-        <div className="flex justify-end gap-2"><button type="button" className="btn-ghost" onClick={onClose}>Cancelar</button><button className="btn-gold">Salvar</button></div>
+        <div className="flex justify-end gap-2"><button type="button" className="btn-ghost" onClick={onClose}>Cancelar</button><button className="btn-primary">Salvar</button></div>
       </form>
     </Modal>
   )

@@ -52,7 +52,7 @@ export default function MinhaConta({ member, onSaved }) {
           <div><label className="label">UF</label><input className="input" maxLength={2} value={dados.uf} onChange={(e) => setDados({ ...dados, uf: e.target.value.toUpperCase() })} /></div>
         </div>
         {msgDados.t && <p className={`text-sm ${msgDados.ok ? 'text-leaf' : 'text-red-700'}`}>{msgDados.t}</p>}
-        <button className="btn-gold">Salvar dados</button>
+        <button className="btn-primary">Salvar dados</button>
       </form>
 
       <form onSubmit={trocarSenha} className="card p-6 space-y-4">
@@ -65,7 +65,7 @@ export default function MinhaConta({ member, onSaved }) {
         </div>
         {msgSenha.t && <p className={`text-sm ${msgSenha.ok ? 'text-leaf' : 'text-red-700'}`}>{msgSenha.t}</p>}
         <div className="flex flex-wrap gap-2">
-          <button className="btn-gold" disabled={busy}>{busy ? 'Salvando…' : 'Trocar senha'}</button>
+          <button className="btn-primary" disabled={busy}>{busy ? 'Salvando…' : 'Trocar senha'}</button>
           <button type="button" className="btn-ghost" onClick={enviarLink}>Esqueci a senha atual</button>
         </div>
       </form>

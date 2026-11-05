@@ -52,7 +52,7 @@ export default function Vendas() {
         <div className="flex flex-wrap gap-2">
           <button className="btn-ghost" onClick={() => setModal('importar')}>Importar planilha</button>
           <button className="btn-ghost" onClick={exportar}>Exportar CSV</button>
-          <button className="btn-gold" onClick={() => setModal('nova')}>Lançar venda</button>
+          <button className="btn-primary" onClick={() => setModal('nova')}>Lançar venda</button>
         </div>
       </div>
 
@@ -86,7 +86,7 @@ export default function Vendas() {
                   <td><StatusPill s={r.status} /></td>
                   <td className="text-right whitespace-nowrap">{money(r.valor_produtos)}</td>
                   <td className="text-right whitespace-nowrap">{Number(r.comissao_creator) ? money(r.comissao_creator) : '—'}</td>
-                  <td><button className="text-xs font-semibold text-gold-dark hover:underline" onClick={() => setModal(r)}>Editar</button></td>
+                  <td><button className="text-xs font-semibold text-blue hover:underline" onClick={() => setModal(r)}>Editar</button></td>
                 </tr>
               ))}
             </tbody>
@@ -172,7 +172,7 @@ function VendaForm({ venda, onClose, onSaved }) {
         {err && <p className="text-sm text-red-700">{err}</p>}
         <div className="flex justify-between gap-2">
           {!novo ? <button type="button" className="btn-danger" onClick={excluir}>Excluir</button> : <span />}
-          <div className="flex gap-2"><button type="button" className="btn-ghost" onClick={onClose}>Cancelar</button><button className="btn-gold" disabled={busy}>{busy ? 'Salvando…' : 'Salvar'}</button></div>
+          <div className="flex gap-2"><button type="button" className="btn-ghost" onClick={onClose}>Cancelar</button><button className="btn-primary" disabled={busy}>{busy ? 'Salvando…' : 'Salvar'}</button></div>
         </div>
       </form>
     </Modal>
@@ -300,7 +300,7 @@ function Importar({ onClose, onDone }) {
       )}
       {msg && <p className="text-sm text-red-700">{msg}</p>}
       <div className="flex justify-end gap-2"><button className="btn-ghost" onClick={onClose}>Cancelar</button>
-        <button className="btn-gold" disabled={busy || !map.numero || !map.data_venda || !map.valor_produtos} onClick={importar}>{busy ? 'Importando…' : 'Importar'}</button></div>
+        <button className="btn-primary" disabled={busy || !map.numero || !map.data_venda || !map.valor_produtos} onClick={importar}>{busy ? 'Importando…' : 'Importar'}</button></div>
     </Modal>
   )
 }

@@ -27,12 +27,12 @@ export default function PainelCreator() {
     <div className="space-y-6">
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div><h1 className="h1">Minhas vendas</h1>
-          {creator && <p className="text-ink/60 text-sm">Cupom <span className="pill bg-gold-light/40 text-gold-dark font-mono">{creator.cupom}</span> · comissão de {pct(creator.comissao_pct)} sobre o valor dos produtos</p>}</div>
+          {creator && <p className="text-ink/60 text-sm">Cupom <span className="pill bg-blue-light text-blue-dark font-mono">{creator.cupom}</span> · comissão de {pct(creator.comissao_pct)} sobre o valor dos produtos</p>}</div>
         <PeriodoPicker value={periodo} onChange={setPeriodo} />
       </div>
       <div className="grid sm:grid-cols-3 gap-4">
         <Stat label="Vendas com seu cupom" value={pagas.length} />
-        <Stat label="Total vendido" value={money(total)} hint="Valor dos produtos, sem frete" tone="gold" />
+        <Stat label="Total vendido" value={money(total)} hint="Valor dos produtos, sem frete" tone="silver" />
         <Stat label="Sua comissão" value={money(comissao)} tone="leaf" />
       </div>
       <div className="card overflow-x-auto">

@@ -26,7 +26,7 @@ export default function MeusPedidos() {
             <tr><td className="font-semibold">{num(p.total_unidades)} unidades · preço de {p.faixa}</td><td /><td className="text-right font-bold">{money(p.valor_produtos)}</td></tr>
           </tbody></table>
           {p.observacao && <p className="text-sm rounded-xl bg-sand p-3">{p.observacao}</p>}
-          {p.link_pagamento && p.status === 'aprovado' && <a href={p.link_pagamento} target="_blank" rel="noreferrer" className="btn-gold">Pagar pedido</a>}
+          {p.link_pagamento && p.status === 'aprovado' && <a href={p.link_pagamento} target="_blank" rel="noreferrer" className="btn-primary">Pagar pedido</a>}
           <p className="text-xs text-ink/50">Frete combinado com a equipe e não incluso no valor acima.</p>
         </div>
       ))}
