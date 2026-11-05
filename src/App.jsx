@@ -45,9 +45,14 @@ export default function App() {
   const [member, setMember] = useState(undefined) // undefined = carregando, null = sem cadastro
   const [route, go] = useHashRoute()
 
+  const [recovery, setRecovery] = useState(() => window.location.hash.includes('type=recovery'))
+
   useEffect(() => {
     supabase.auth.getSession().then(({ data }) => setSession(data.session))
-    const { data: sub } = supabase.auth.onAuthStateChange((_e, s) => setSession(s))
+    const { data: sub } = supabase.auth.onAuthStateChange((e, s) => {
+      if (e === 'PASSWORD_RECOVERY') setRecovery(true)
+      setSession(s)
+    })
     return () => sub.subscription.unsubscribe()
   }, [])
 
@@ -60,6 +65,7 @@ export default function App() {
   }
   useEffect(() => { loadMember() }, [session?.user?.id])
 
+  if (session && recovery) return <NovaSenha onDone={() => { setRecovery(false); window.location.hash = '' }} />
   if (!session) return <Login />
   if (member === undefined) return <div className="min-h-screen grid place-items-center text-ink/60">Carregando…</div>
 
@@ -142,6 +148,34 @@ function Aguardando({ member, email, onReload }) {
         )}
         <button className="btn-ghost w-full" onClick={() => supabase.auth.signOut()}>Sair</button>
       </div>
+    </div>
+  )
+}
+
+function NovaSenha({ onDone }) {
+  const [s1, setS1] = useState('')
+  const [s2, setS2] = useState('')
+  const [msg, setMsg] = useState('')
+  const [busy, setBusy] = useState(false)
+  async function salvar(e) {
+    e.preventDefault(); setMsg('')
+    if (s1.length < 6) return setMsg('A senha precisa ter pelo menos 6 caracteres.')
+    if (s1 !== s2) return setMsg('As duas senhas não são iguais.')
+    setBusy(true)
+    const { error } = await supabase.auth.updateUser({ password: s1 })
+    setBusy(false)
+    if (error) setMsg(error.message); else onDone()
+  }
+  return (
+    <div className="min-h-screen grid place-items-center p-4">
+      <form onSubmit={salvar} className="card w-full max-w-sm p-8 space-y-4">
+        <Brand />
+        <p className="text-sm text-ink/70">Crie sua nova senha.</p>
+        <div><label className="label">Nova senha</label><input type="password" className="input" value={s1} onChange={(e) => setS1(e.target.value)} autoComplete="new-password" /></div>
+        <div><label className="label">Repita a nova senha</label><input type="password" className="input" value={s2} onChange={(e) => setS2(e.target.value)} autoComplete="new-password" /></div>
+        {msg && <p className="text-sm text-red-700">{msg}</p>}
+        <button className="btn-gold w-full" disabled={busy}>{busy ? 'Salvando…' : 'Salvar nova senha'}</button>
+      </form>
     </div>
   )
 }
