@@ -106,7 +106,7 @@ function Ranking({ titulo, linhas, labels, total }) {
             return (
               <div key={k}>
                 <div className="flex justify-between text-sm"><span className="font-medium">{labels[k] || k}</span><span>{money(v.valor)}</span></div>
-                <div className="h-2 rounded-full bg-sand mt-1 overflow-hidden"><div className="h-full bg-gradient-to-r from-gold-light to-gold" style={{ width: `${p}%` }} /></div>
+                <div className="h-2 rounded-full bg-sand mt-1 overflow-hidden"><div className="h-full bg-gradient-to-r from-blue to-[#4C7BFF]" style={{ width: `${p}%` }} /></div>
                 <p className="text-xs text-ink/50 mt-0.5">{v.qtd} vendas · {pct(p)}</p>
               </div>
             )

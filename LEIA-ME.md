@@ -3,7 +3,7 @@
 Sistema de gestão de vendas, comissões, parceiros (revendedores e distribuidores) e creators da Le Belle Cosmetics e New Belle Vitta.
 
 ## Tecnologia
-React + Vite + Tailwind CSS · Supabase (mesmo projeto da Le Belle, tabelas com prefixo `glb_`) · Vercel.
+React + Vite + Tailwind CSS · Identidade: preto, prata, azul e dourado · fonte do sistema da Apple (SF Pro), com Inter no Windows/Android · Supabase (mesmo projeto da Le Belle, tabelas com prefixo `glb_`) · Vercel.
 
 ## Como publicar (GitHub + Vercel)
 1. Crie um repositório novo no GitHub chamado `grupo-le-belle` e envie esta pasta (sem `node_modules`, `dist` e `.env`).

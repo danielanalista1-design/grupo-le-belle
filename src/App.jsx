@@ -186,10 +186,10 @@ function NovaSenha({ onDone }) {
 export function Brand({ small }) {
   return (
     <div className={small ? '' : 'text-center'}>
-      <p className={`font-display font-extrabold tracking-tight ${small ? 'text-lg' : 'text-3xl'}`}>
-        Grupo <span className="bg-gradient-to-b from-gold-light to-gold-dark bg-clip-text text-transparent">Le Belle</span>
+      <p className={`font-display font-bold tracking-tight ${small ? 'text-lg' : 'text-3xl'}`}>
+        <span className="bg-gradient-to-b from-silver-dark to-ink bg-clip-text text-transparent">Grupo</span> <span className="bg-gradient-to-b from-gold to-gold-dark bg-clip-text text-transparent">Le Belle</span>
       </p>
-      {!small && <p className="text-xs uppercase tracking-[0.3em] text-ink/50 mt-1">Gestão de vendas e parceiros</p>}
+      {!small && <p className="text-xs uppercase tracking-[0.3em] text-silver-dark mt-1">Gestão de vendas e parceiros</p>}
     </div>
   )
 }

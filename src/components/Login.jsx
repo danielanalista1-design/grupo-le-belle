@@ -28,7 +28,7 @@ export default function Login() {
   }
 
   return (
-    <div className="min-h-screen grid place-items-center p-4 bg-gradient-to-b from-sand to-[#EFE7D7]">
+    <div className="min-h-screen grid place-items-center p-4 bg-[radial-gradient(ellipse_at_top,_#E3EAFE_0%,_#F2F3F5_45%,_#DCDFE4_100%)]">
       <form onSubmit={submit} className="card w-full max-w-sm p-8 space-y-4">
         <Brand />
         <div className="flex rounded-xl bg-sand p-1 text-sm font-semibold">

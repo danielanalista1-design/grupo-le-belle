@@ -11,7 +11,7 @@ export function PeriodoPicker({ value, onChange }) {
     <div className="flex flex-wrap items-end gap-2">
       {presets.map(([l, r]) => (
         <button key={l} onClick={() => onChange(r)}
-          className={`btn ${value.inicio === r.inicio && value.fim === r.fim ? 'bg-ink text-white' : 'btn-ghost'}`}>{l}</button>
+          className={`btn ${value.inicio === r.inicio && value.fim === r.fim ? 'bg-blue text-white shadow-sm' : 'btn-ghost'}`}>{l}</button>
       ))}
       <div className="flex items-end gap-2">
         <div><label className="label">De</label><input type="date" className="input" value={value.inicio} onChange={(e) => onChange({ ...value, inicio: e.target.value })} /></div>
