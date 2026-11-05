@@ -60,11 +60,18 @@ export function origemFromUtm(source = '', medium = '') {
 }
 
 function cupomDo(r: any): string | null {
-  const p = obj(r.promocode)
+  const p = lista(r.promocode)[0] || obj(r.promocode)
   const meta = lista(r.metadata)
   const doMeta = meta.find((m: any) => /cupom|coupon|promocode/i.test(m?.key || ''))?.value
   const c = p.code || p.name || r.promocode_code || r.coupon_code || r.coupon || doMeta || null
   return c ? String(c).trim().toUpperCase() : null
+}
+
+// Guarda o pedido para conferência, mas sem CPF, endereço, telefone e e-mail do cliente
+function semDadosPessoais(payload: any) {
+  const r = { ...(payload.resource || {}) }
+  for (const k of ['customer', 'shipping_address', 'spreadsheet', 'pickup_address', 'ip', 'pix', 'transactions', 'payments', 'whatsapp', 'whatsapp_app', 'billet_whatsapp_link', 'billet_whatsapp_app_link']) delete r[k]
+  return { ...payload, resource: r }
 }
 
 export function montarVenda(payload: any) {
@@ -114,7 +121,7 @@ export function montarVenda(payload: any) {
       utm_medium: r.utm_medium || null,
       utm_campaign: r.utm_campaign || null,
       observacao: 'Importado automaticamente da Yampi',
-      raw: payload,
+      raw: semDadosPessoais(payload),
     },
     itens,
   }
@@ -158,7 +165,7 @@ Deno.serve(async (req) => {
     console.log(`Venda ${venda.numero} (${venda.canal}) → ${venda.status} · R$ ${venda.valor_produtos}`)
     return new Response('OK', { status: 200 })
   } catch (e) {
-    console.error('Erro ao gravar venda:', (e as Error).message, JSON.stringify(payload).slice(0, 4000))
+    console.error('Erro ao gravar venda:', (e as Error).message, JSON.stringify(semDadosPessoais(payload)).slice(0, 4000))
     return new Response('OK (erro registrado)', { status: 200 })
   }
 })
