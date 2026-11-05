@@ -29,6 +29,10 @@ React + Vite + Tailwind CSS · Identidade: preto, prata e azul vivo · fonte do 
   `https://zyhgtevlqeoeizpzvyhg.supabase.co/functions/v1/glb-yampi-webhook`, eventos Pedido criado / Pedido aprovado / Status do pedido atualizado.
   Segredo `GLB_YAMPI_WEBHOOK_SECRET` em Supabase › Edge Functions › Secrets. O site de cada venda é identificado pela utm_source
   (site_vittagold / site_lebelle) ou, sem ela, pelo produto (nome com "Vitta" ou SKU GOLD_ = Vitta Gold). Origem vem das UTMs; cupom de creator vira origem Creator.
+- Origem das vendas dos sites: a Yampi não guarda as UTMs dos links de compra. Por isso cada site avisa a função `glb-track`
+  quando alguém clica em Comprar (site + utm_* + cupom + IP, tabela `glb_clicks`, apagados após 30 dias). Quando o pedido chega,
+  o webhook procura o clique do mesmo IP nas 24 h anteriores. Trecho para colar no site (trocar o site e os dados):
+  `navigator.sendBeacon('https://zyhgtevlqeoeizpzvyhg.supabase.co/functions/v1/glb-track', new Blob([JSON.stringify({ site: 'site_lebelle', utm_source, utm_medium, utm_campaign, cupom })], { type: 'text/plain' }))`
 - Link de creator no site Vitta Gold: `https://SITE/?cupom=CODIGO` aplica o cupom no checkout e registra a venda para o creator.
 - TikTok Shop, Mercado Livre e outros: Vendas › Importar planilha (CSV).
 - Venda direta: Vendas › Lançar venda.

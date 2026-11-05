@@ -145,6 +145,24 @@ Deno.serve(async (req) => {
   try {
     const { venda, itens } = montarVenda(payload)
 
+    // A Yampi não guarda as UTMs dos links de compra: buscamos a origem no clique em "Comprar"
+    // feito pelo mesmo endereço de internet nas 24 h anteriores ao pedido.
+    const ip = String(payload.resource?.ip || '').trim()
+    if (!venda.utm_source && ip) {
+      const quando = new Date(venda.data_venda).getTime()
+      const { data: clique } = await supabase.from('glb_clicks').select('utm_source, utm_medium, utm_campaign')
+        .eq('ip', ip).not('utm_source', 'is', null)
+        .gte('criado_em', new Date(quando - 24 * 36e5).toISOString())
+        .lte('criado_em', new Date(quando + 15 * 6e4).toISOString())
+        .order('criado_em', { ascending: false }).limit(1).maybeSingle()
+      if (clique) {
+        venda.utm_source = clique.utm_source
+        venda.utm_medium = clique.utm_medium
+        venda.utm_campaign = clique.utm_campaign
+        venda.origem = origemFromUtm(clique.utm_source, clique.utm_medium)
+      }
+    }
+
     // Não deixa um evento atrasado "despagar" uma venda que já está paga
     const { data: atual } = await supabase.from('glb_sales').select('id, status, canal')
       .eq('external_id', venda.external_id).in('canal', ['site_lebelle', 'site_vittagold']).maybeSingle()
@@ -162,7 +180,7 @@ Deno.serve(async (req) => {
       const { error: e2 } = await supabase.from('glb_sale_items').insert(itens.map((i) => ({ ...i, sale_id: salvo.id })))
       if (e2) console.error('Itens:', e2.message)
     }
-    console.log(`Venda ${venda.numero} (${venda.canal}) → ${venda.status} · R$ ${venda.valor_produtos}`)
+    console.log(`Venda ${venda.numero} (${venda.canal}) → ${venda.status} · R$ ${venda.valor_produtos} · origem ${venda.origem}`)
     return new Response('OK', { status: 200 })
   } catch (e) {
     console.error('Erro ao gravar venda:', (e as Error).message, JSON.stringify(semDadosPessoais(payload)).slice(0, 4000))
