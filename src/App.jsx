@@ -12,6 +12,8 @@ import Configuracoes from './pages/socio/Configuracoes'
 import Catalogo from './pages/parceiro/Catalogo'
 import MeusPedidos from './pages/parceiro/MeusPedidos'
 import PainelCreator from './pages/creator/Painel'
+import MinhaConta from './pages/MinhaConta'
+import SenhaInput from './components/SenhaInput'
 
 const MENUS = {
   socio: [
@@ -73,7 +75,7 @@ export default function App() {
     return <Aguardando member={member} email={session.user.email} onReload={loadMember} />
   }
 
-  const menu = MENUS[member.role] || []
+  const menu = [...(MENUS[member.role] || []), ['conta', 'Minha conta']]
   const keys = menu.map((m) => m[0])
   const current = keys.includes(route) ? route : keys[0]
 
@@ -88,6 +90,7 @@ export default function App() {
     catalogo: <Catalogo member={member} onDone={() => go('meus-pedidos')} />,
     'meus-pedidos': <MeusPedidos />,
     painel: <PainelCreator member={member} />,
+    conta: <MinhaConta member={member} onSaved={loadMember} />,
   }
 
   return (
@@ -171,8 +174,8 @@ function NovaSenha({ onDone }) {
       <form onSubmit={salvar} className="card w-full max-w-sm p-8 space-y-4">
         <Brand />
         <p className="text-sm text-ink/70">Crie sua nova senha.</p>
-        <div><label className="label">Nova senha</label><input type="password" className="input" value={s1} onChange={(e) => setS1(e.target.value)} autoComplete="new-password" /></div>
-        <div><label className="label">Repita a nova senha</label><input type="password" className="input" value={s2} onChange={(e) => setS2(e.target.value)} autoComplete="new-password" /></div>
+        <div><label className="label">Nova senha</label><SenhaInput value={s1} onChange={(e) => setS1(e.target.value)} autoComplete="new-password" /></div>
+        <div><label className="label">Repita a nova senha</label><SenhaInput value={s2} onChange={(e) => setS2(e.target.value)} autoComplete="new-password" /></div>
         {msg && <p className="text-sm text-red-700">{msg}</p>}
         <button className="btn-gold w-full" disabled={busy}>{busy ? 'Salvando…' : 'Salvar nova senha'}</button>
       </form>

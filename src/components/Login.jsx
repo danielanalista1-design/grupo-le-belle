@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { supabase } from '../lib/supabase'
 import { Brand } from '../App'
+import SenhaInput from './SenhaInput'
 
 export default function Login() {
   const [mode, setMode] = useState('entrar') // entrar | criar | esqueci
@@ -37,7 +38,7 @@ export default function Login() {
         </div>
         <div><label className="label">E-mail</label><input className="input" type="email" required value={email} onChange={(e) => setEmail(e.target.value)} autoComplete="email" /></div>
         {mode !== 'esqueci' && (
-          <div><label className="label">Senha</label><input className="input" type="password" required minLength={6} value={senha} onChange={(e) => setSenha(e.target.value)} autoComplete={mode === 'entrar' ? 'current-password' : 'new-password'} /></div>
+          <div><label className="label">Senha</label><SenhaInput required minLength={6} value={senha} onChange={(e) => setSenha(e.target.value)} autoComplete={mode === 'entrar' ? 'current-password' : 'new-password'} /></div>
         )}
         {msg.t && <p className={`text-sm ${msg.ok ? 'text-leaf' : 'text-red-700'}`}>{msg.t}</p>}
         <button className="btn-gold w-full" disabled={busy}>
