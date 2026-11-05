@@ -25,7 +25,11 @@ React + Vite + Tailwind CSS · Identidade: preto, prata e azul vivo · fonte do 
 - Pedido do portal marcado como pago entra automaticamente nas vendas (canal Portal, origem Revenda).
 
 ## Canais de venda
-- Site Le Belle e site Vitta Gold: integração com a Yampi (etapa 3, em construção).
+- Site Le Belle e site Vitta Gold: automático pela Yampi. Função `glb-yampi-webhook` (código em `supabase/functions/`), URL
+  `https://zyhgtevlqeoeizpzvyhg.supabase.co/functions/v1/glb-yampi-webhook`, eventos Pedido criado / Pedido aprovado / Status do pedido atualizado.
+  Segredo `GLB_YAMPI_WEBHOOK_SECRET` em Supabase › Edge Functions › Secrets. O site de cada venda é identificado pela utm_source
+  (site_vittagold / site_lebelle) ou, sem ela, pelo produto (nome com "Vitta" ou SKU GOLD_ = Vitta Gold). Origem vem das UTMs; cupom de creator vira origem Creator.
+- Link de creator no site Vitta Gold: `https://SITE/?cupom=CODIGO` aplica o cupom no checkout e registra a venda para o creator.
 - TikTok Shop, Mercado Livre e outros: Vendas › Importar planilha (CSV).
 - Venda direta: Vendas › Lançar venda.
 
